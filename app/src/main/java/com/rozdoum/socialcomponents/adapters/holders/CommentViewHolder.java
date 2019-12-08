@@ -19,8 +19,9 @@
 package com.rozdoum.socialcomponents.adapters.holders;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -28,8 +29,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.adapters.CommentsAdapter;
 import com.rozdoum.socialcomponents.managers.ProfileManager;

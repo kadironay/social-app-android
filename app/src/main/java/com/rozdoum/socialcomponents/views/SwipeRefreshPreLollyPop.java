@@ -1,8 +1,9 @@
 package com.rozdoum.socialcomponents.views;
 
 import android.content.Context;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.AttributeSet;
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.rozdoum.socialcomponents.R;
 

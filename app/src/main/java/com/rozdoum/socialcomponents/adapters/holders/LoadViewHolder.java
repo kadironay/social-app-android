@@ -16,8 +16,9 @@
 
 package com.rozdoum.socialcomponents.adapters.holders;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by alexey on 27.12.16.

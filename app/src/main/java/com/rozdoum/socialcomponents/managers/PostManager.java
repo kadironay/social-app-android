@@ -19,9 +19,12 @@ package com.rozdoum.socialcomponents.managers;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.support.annotation.Nullable;
+//import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.ImageView;
+
+import androidx.annotation.Nullable;
+
 import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;

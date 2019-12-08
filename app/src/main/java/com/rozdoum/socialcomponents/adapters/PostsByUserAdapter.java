@@ -16,10 +16,11 @@
 
 package com.rozdoum.socialcomponents.adapters;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.base.BaseActivity;

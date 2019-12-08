@@ -17,10 +17,11 @@
 package com.rozdoum.socialcomponents.main.editProfile.createProfile;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.editProfile.EditProfileActivity;

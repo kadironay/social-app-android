@@ -16,8 +16,9 @@
 
 package com.rozdoum.socialcomponents.main.base;
 
-import android.support.annotation.StringRes;
 import android.view.View;
+
+import androidx.annotation.StringRes;
 
 /**
  * Created by Alexey on 08.05.18.

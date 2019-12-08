@@ -17,8 +17,9 @@
 package com.rozdoum.socialcomponents.main.base;
 
 import android.content.DialogInterface;
-import android.support.annotation.StringRes;
 import android.view.View;
+
+import androidx.annotation.StringRes;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 

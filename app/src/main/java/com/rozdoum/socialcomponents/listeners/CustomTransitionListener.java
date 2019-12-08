@@ -1,8 +1,9 @@
 package com.rozdoum.socialcomponents.listeners;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.transition.Transition;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * Created by alexey on 05.04.17.

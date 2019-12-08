@@ -19,8 +19,9 @@ package com.rozdoum.socialcomponents.main.base;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.Nullable;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
