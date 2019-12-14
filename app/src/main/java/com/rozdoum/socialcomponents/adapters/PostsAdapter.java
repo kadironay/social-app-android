@@ -62,12 +62,7 @@ public class PostsAdapter extends BasePostsAdapter {
 
     private void initRefreshLayout() {
         if (swipeContainer != null) {
-            this.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-                @Override
-                public void onRefresh() {
-                    onRefreshAction();
-                }
-            });
+            this.swipeContainer.setOnRefreshListener(() -> onRefreshAction());
         }
     }
 

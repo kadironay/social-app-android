@@ -20,27 +20,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <com.rozdoum.socialcomponents.views.CircularImageView
         android:id="@+id/imageView"
         android:layout_width="@dimen/profile_screen_avatar_size"
         android:layout_height="@dimen/profile_screen_avatar_size"
+        android:layout_marginBottom="24dp"
         app:border="false"
         app:shadow="false"
-        android:layout_marginBottom="24dp"
         tools:src="@drawable/ic_stub"
-        tools:targetApi="lollipop"/>
+        tools:targetApi="lollipop" />
 
     <TextView
         android:id="@+id/confirmationMessageTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.Title"
-        tools:text="Unfollow John Smith?"/>
+        tools:text="Unfollow John Smith?" />
 
 </LinearLayout>
