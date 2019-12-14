@@ -171,7 +171,7 @@ public class PostInteractor {
         postsQuery.keepSynced(true);
         postsQuery.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PostListResult result = parsePostList((Map<String, Object>) dataSnapshot.getValue());
                 onDataChangedListener.onListChanged(result.getPosts());
             }

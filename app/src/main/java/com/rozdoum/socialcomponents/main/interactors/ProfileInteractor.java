@@ -120,7 +120,7 @@ public class ProfileInteractor {
     }
 
     public void isProfileExist(String id, final OnObjectExistListener<Profile> onObjectExistListener) {
-        DatabaseReference databaseReference = databaseHelper.getDatabaseReference().child("profiles").child(id);
+        DatabaseReference databaseReference = databaseHelper.getDatabaseReference().child(DatabaseHelper.PROFILES_DB_KEY).child(id);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -52,11 +52,13 @@ class FollowingPostsPresenter extends BasePresenter<FollowPostsView> {
         if (checkInternetConnection()) {
             if (getCurrentUserId() != null) {
                 ifViewAttached(FollowPostsView::showLocalProgress);
-                postManager.getFollowingPosts(getCurrentUserId(), list -> ifViewAttached(view -> {
-                    view.hideLocalProgress();
-                    view.onFollowingPostsLoaded(list);
-                    view.showEmptyListMessage(list.isEmpty());
-                }));
+                postManager.getFollowingPosts(getCurrentUserId(), list -> {
+                    ifViewAttached(view -> {
+                        view.hideLocalProgress();
+                        view.onFollowingPostsLoaded(list);
+                        view.showEmptyListMessage(list.isEmpty());
+                    });
+                });
             } else {
                 ifViewAttached(view -> {
                     view.showEmptyListMessage(true);

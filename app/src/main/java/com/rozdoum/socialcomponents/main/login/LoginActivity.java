@@ -31,7 +31,10 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.rozdoum.socialcomponents.R;
@@ -67,6 +70,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         initGoogleSignIn();
         initFirebaseAuth();
         initFacebookSignIn();
+        initEmailSignIn();
     }
 
     private void initGoogleSignIn() {
@@ -119,6 +123,13 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         });
 
         findViewById(R.id.facebookSignInButton).setOnClickListener(v -> presenter.onFacebookSignInClick());
+    }
+
+    private void initEmailSignIn() {
+        mAuth = FirebaseAuth.getInstance();
+
+        findViewById(R.id.emailSignInButton).setOnClickListener(v -> presenter.onEmailSignInClick());
+        findViewById(R.id.registerWithEmail).setOnClickListener(view -> presenter.OnRegisterWithEmailClick());
     }
 
     @Override
@@ -210,6 +221,45 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     @Override
     public void signInWithFacebook() {
         LoginManager.getInstance().logInWithReadPermissions(LoginActivity.this, Arrays.asList("email", "public_profile"));
+    }
+
+    @Override
+    public void signInWithEmail() {
+        // TODO: Create a separate activity and screen to enter email and password
+        final String email = "test@gmail.com";
+        final String password = "test1234";
+
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            LogUtil.logDebug(TAG, "Sign in with email failed!");
+                            showSnackBar("Sign in with email failed!");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void registerWithEmail() {
+        // TODO: Create a separate activity and screen to register a new user
+        showSnackBar("Register with email!");
+        String email = "test1@gmail.com";
+        String password = "test1_1234";
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful())
+                        {
+                            LogUtil.logInfo(TAG, "Successfully signed in");
+                            showSnackBar("Successfully signed in");
+                        } else {
+                            LogUtil.logDebug(TAG, "Failed to sign in");
+                        }
+                    }
+                });
     }
 }
 

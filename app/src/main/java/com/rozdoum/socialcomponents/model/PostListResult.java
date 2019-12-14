@@ -21,9 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PostListResult {
-    boolean isMoreDataAvailable;
-    List<Post> posts = new ArrayList<>();
-    long lastItemCreatedDate;
+    private boolean isMoreDataAvailable;
+    private List<Post> posts = new ArrayList<>();
+    private long lastItemCreatedDate;
 
     public boolean isMoreDataAvailable() {
         return isMoreDataAvailable;

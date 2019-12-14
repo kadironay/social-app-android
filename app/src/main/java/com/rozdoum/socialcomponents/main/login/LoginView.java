@@ -30,6 +30,10 @@ public interface LoginView extends BaseView {
 
     void signInWithFacebook();
 
+    void signInWithEmail();
+
+    void registerWithEmail();
+
     void setProfilePhotoUrl(String url);
 
     void firebaseAuthWithCredentials(AuthCredential credential);

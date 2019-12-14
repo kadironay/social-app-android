@@ -53,13 +53,13 @@ public class DatabaseHelper {
     public static final String FOLLOWINGS_DB_KEY = "followings";
     public static final String FOLLOWINGS_POSTS_DB_KEY = "followingPostsIds";
     public static final String FOLLOWERS_DB_KEY = "followers";
-    public static final String IMAGES_STORAGE_KEY = "images";
-    public static final String IMAGES_MEDIUM_KEY = "medium";
-    public static final String IMAGES_SMALL_KEY = "small";
+    private static final String IMAGES_STORAGE_KEY = "images";
+    private static final String IMAGES_MEDIUM_KEY = "medium";
+    private static final String IMAGES_SMALL_KEY = "small";
 
     private Context context;
     private FirebaseDatabase database;
-    FirebaseStorage storage;
+    private FirebaseStorage storage;
     private Map<ValueEventListener, DatabaseReference> activeListeners = new HashMap<>();
 
     public static DatabaseHelper getInstance(Context context) {

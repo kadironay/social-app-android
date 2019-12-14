@@ -61,7 +61,8 @@ public class ProfileManager extends FirebaseListenersManager {
         Profile profile = new Profile(firebaseUser.getUid());
         profile.setEmail(firebaseUser.getEmail());
         profile.setUsername(firebaseUser.getDisplayName());
-        profile.setPhotoUrl(largeAvatarURL != null ? largeAvatarURL : firebaseUser.getPhotoUrl().toString());
+        profile.setPhotoUrl(largeAvatarURL != null ? largeAvatarURL :
+                firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : "");
         return profile;
     }
 
