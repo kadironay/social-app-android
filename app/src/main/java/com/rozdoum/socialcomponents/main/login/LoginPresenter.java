@@ -38,6 +38,7 @@ import com.rozdoum.socialcomponents.managers.ProfileManager;
 import com.rozdoum.socialcomponents.utils.LogUtil;
 import com.rozdoum.socialcomponents.utils.PreferencesUtil;
 import com.google.android.gms.tasks.Task;
+import com.rozdoum.socialcomponents.utils.ValidationUtil;
 
 /**
  * Created by Alexey on 03.05.18.
@@ -94,7 +95,7 @@ class LoginPresenter extends BasePresenter<LoginView> {
         if (checkInternetConnection()) {
             ifViewAttached(view ->
             {
-                if (!isValidEmail(email))
+                if (!ValidationUtil.isEmailValid(email))
                 {
                     view.showSnackBar(R.string.error_invalid_email);
                 }
@@ -115,11 +116,11 @@ class LoginPresenter extends BasePresenter<LoginView> {
         if (checkInternetConnection()) {
             ifViewAttached(view ->
             {
-                if (!isValidEmail(userData.email))
+                if (!ValidationUtil.isEmailValid(userData.email))
                 {
                     view.showSnackBar(R.string.error_invalid_email);
                 }
-                else if (!isValidPassword(userData.password))
+                else if (!ValidationUtil.isPasswordValid(userData.password))
                 {
                     view.showSnackBar(R.string.error_invalid_password);
                 }
@@ -190,13 +191,5 @@ class LoginPresenter extends BasePresenter<LoginView> {
 
             view.hideProgress();
         });
-    }
-
-    private static boolean isValidEmail(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
-    }
-
-    private boolean isValidPassword(CharSequence target) {
-        return (!TextUtils.isEmpty(target) && target.length() > 4);
     }
 }

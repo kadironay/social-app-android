@@ -19,6 +19,8 @@ package com.rozdoum.socialcomponents.utils;
 import android.content.Context;
 import android.graphics.Rect;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Patterns;
 
 import com.rozdoum.socialcomponents.Constants;
 
@@ -31,6 +33,11 @@ public class ValidationUtil {
     public static boolean isEmailValid(String email) {
         String stricterFilterString = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";
         return email.matches(stricterFilterString);
+    }
+
+    public static boolean isPasswordValid(String password) {
+        return (!TextUtils.isEmpty(password) &&
+                password.length() >= Constants.Login.MIN_PASSWORD_LENGTH);
     }
 
     public static boolean isOnlyLatinLetters(String text) {
@@ -54,9 +61,7 @@ public class ValidationUtil {
 
     public static boolean isYearValid(String monthString) {
         if (monthString != null) {
-            if (monthString.length() == 2) {
-                return true;
-            }
+            return monthString.length() == 2;
         }
         return false;
     }

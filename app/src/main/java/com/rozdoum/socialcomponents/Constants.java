@@ -22,6 +22,10 @@ package com.rozdoum.socialcomponents;
 
 public class Constants {
 
+    public static class Login {
+        public static final int MIN_PASSWORD_LENGTH = 4;
+    }
+
     public static class Profile {
         public static final int MAX_AVATAR_SIZE = 1280; //px, side of square
         public static final int MIN_AVATAR_SIZE = 100; //px, side of square
