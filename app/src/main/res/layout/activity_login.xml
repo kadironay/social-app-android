@@ -108,15 +108,33 @@
 
         </RelativeLayout>
 
-        <TextView
-            android:id="@+id/registerWithEmail"
-            android:layout_width="@dimen/register_with_email_text_width"
-            android:layout_height="@dimen/register_with_email_text_height"
-            android:layout_gravity="end"
-            android:textAlignment="textEnd"
-            android:text="@string/text_register_with_email"
-            android:textColor="@drawable/login_button_text_selector" />
-
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_register_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <fragment android:name="com.rozdoum.socialcomponents.main.login.email_register.EmailRegisterFragment"
+            android:id="@+id/fragment_register_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_login_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:orientation="horizontal">
+
+        <fragment android:name="com.rozdoum.socialcomponents.main.login.email_login.EmailLoginFragment"
+            android:id="@+id/fragment_login_place"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
 </FrameLayout>
 

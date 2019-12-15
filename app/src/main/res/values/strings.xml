@@ -87,6 +87,16 @@
     <string name="button_login_with_google">Login with google</string>
     <string name="button_login_with_email">Login with email</string>
     <string name="text_register_with_email">Register with email!</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">Email</string>
+    <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
+    <string name="text_login_button">Login</string>
+    <string name="register">Register</string>
+    <string name="re_type_password">Re-type Password</string>
+    <string name="your_name">Full Name</string>
+    <string name="swipe_right_for_login">Swipe Right for Login</string>
+    <string name="swipe_left_for_register">Swipe Left for Register</string>
 
 
     <string name="loading">Loading …</string>
@@ -99,6 +109,7 @@
     <!-- Strings related to login -->
 
     <string name="error_invalid_password">This password is too short</string>
+    <string name="error_invalid_re_password">Entered passwords do not match</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."

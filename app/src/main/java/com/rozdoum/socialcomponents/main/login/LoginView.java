@@ -18,6 +18,7 @@ package com.rozdoum.socialcomponents.main.login;
 
 import com.google.firebase.auth.AuthCredential;
 import com.rozdoum.socialcomponents.main.base.BaseView;
+import com.rozdoum.socialcomponents.main.login.email_register.RegisterUserData;
 
 /**
  * Created by Alexey on 03.05.18.
@@ -32,7 +33,11 @@ public interface LoginView extends BaseView {
 
     void signInWithEmail();
 
-    void registerWithEmail();
+    void registerNewUserLink();
+
+    void registerNewUser(RegisterUserData userData);
+
+    void login(String email, String password);
 
     void setProfilePhotoUrl(String url);
 

@@ -18,8 +18,13 @@ package com.rozdoum.socialcomponents.main.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -31,22 +36,22 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.base.BaseActivity;
 import com.rozdoum.socialcomponents.main.editProfile.createProfile.CreateProfileActivity;
+import com.rozdoum.socialcomponents.main.login.email_login.EmailLoginFragment;
+import com.rozdoum.socialcomponents.main.login.email_register.EmailRegisterFragment;
+import com.rozdoum.socialcomponents.main.login.email_register.RegisterUserData;
 import com.rozdoum.socialcomponents.utils.GoogleApiHelper;
 import com.rozdoum.socialcomponents.utils.LogUtil;
 import com.rozdoum.socialcomponents.utils.LogoutHelper;
 
 import java.util.Arrays;
 
-public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView, GoogleApiClient.OnConnectionFailedListener {
+public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView, GoogleApiClient.OnConnectionFailedListener, OnFragmentFinishedListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
     private static final int SIGN_IN_GOOGLE = 9001;
     public static final int LOGIN_REQUEST_CODE = 10001;
@@ -66,6 +71,10 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        setFragmentListener();
+        changeEmailLoginFragmentVisibility(false);
+        changeEmailRegisterFragmentVisibility(false);
 
         initGoogleSignIn();
         initFirebaseAuth();
@@ -128,8 +137,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     private void initEmailSignIn() {
         mAuth = FirebaseAuth.getInstance();
 
-        findViewById(R.id.emailSignInButton).setOnClickListener(v -> presenter.onEmailSignInClick());
-        findViewById(R.id.registerWithEmail).setOnClickListener(view -> presenter.OnRegisterWithEmailClick());
+        findViewById(R.id.emailSignInButton).setOnClickListener(view -> presenter.onEmailSignInClick());
     }
 
     @Override
@@ -225,41 +233,144 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
 
     @Override
     public void signInWithEmail() {
-        // TODO: Create a separate activity and screen to enter email and password
-        final String email = "test@gmail.com";
-        final String password = "test1234";
+        changeButtonContainerVisibility(false);
+        changeEmailLoginFragmentVisibility(true);
+        changeEmailRegisterFragmentVisibility(false);
+    }
 
-        mAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (!task.isSuccessful()) {
-                            LogUtil.logDebug(TAG, "Sign in with email failed!");
-                            showSnackBar("Sign in with email failed!");
-                        }
+    @Override
+    public void registerNewUserLink() {
+        changeButtonContainerVisibility(false);
+        changeEmailLoginFragmentVisibility(false);
+        changeEmailRegisterFragmentVisibility(true);
+    }
+
+    @Override
+    public void registerNewUser(RegisterUserData userData) {
+        mAuth.createUserWithEmailAndPassword(userData.email, userData.password)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful())
+                    {
+                        LogUtil.logInfo(TAG, "Successfully registered");
+                        showSnackBar("Successfully registered in");
+                    } else {
+                        LogUtil.logDebug(TAG, "Failed to register");
+                        showSnackBar("Failed to register");
                     }
                 });
     }
 
     @Override
-    public void registerWithEmail() {
-        // TODO: Create a separate activity and screen to register a new user
-        showSnackBar("Register with email!");
-        String email = "test1@gmail.com";
-        String password = "test1_1234";
-        mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful())
-                        {
-                            LogUtil.logInfo(TAG, "Successfully signed in");
-                            showSnackBar("Successfully signed in");
-                        } else {
-                            LogUtil.logDebug(TAG, "Failed to sign in");
-                        }
+    public void login(String email, String password) {
+        mAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(LoginActivity.this, task -> {
+                    if (!task.isSuccessful()) {
+                        LogUtil.logDebug(TAG, "Sign in with email failed!");
+                        showSnackBar("Sign in with email failed!");
                     }
                 });
     }
+
+    @Override
+    public void OnFragmentFinished(int fragmentId) {
+        if (fragmentId == EmailLoginFragment.FRAGMENT_ID)
+        {
+            changeEmailLoginFragmentVisibility(false);
+            changeEmailRegisterFragmentVisibility(false);
+            changeButtonContainerVisibility(true);
+
+        }
+        else if (fragmentId == EmailRegisterFragment.FRAGMENT_ID)
+        {
+
+            changeEmailRegisterFragmentVisibility(false);
+            changeEmailLoginFragmentVisibility(true);
+            changeButtonContainerVisibility(false);
+        }
+    }
+
+    @Override
+    public void OnRegisterNewUserLinkClicked(int fragmentId) {
+        if (fragmentId == EmailLoginFragment.FRAGMENT_ID)
+        {
+            presenter.OnRegisterNewUserLinkClick();
+        }
+    }
+
+    @Override
+    public void OnLoginClicked(String email, String password) {
+        presenter.OnLoginClick(email, password);
+    }
+
+    @Override
+    public void OnRegisterClicked(RegisterUserData userData) {
+        presenter.OnRegisterClick(userData);
+    }
+
+
+    private void setFragmentListener() {
+        FragmentManager manager = getSupportFragmentManager();
+        EmailLoginFragment emailLogin = (EmailLoginFragment) manager.findFragmentById(R.id.fragment_login_place);
+        assert emailLogin != null;
+        emailLogin.setOnFragmentFinishListener(this);
+
+        EmailRegisterFragment emailRegister = (EmailRegisterFragment) manager.findFragmentById(R.id.fragment_register_place);
+        assert emailRegister != null;
+        emailRegister.setOnFragmentFinishListener(this);
+    }
+
+    private void changeButtonContainerVisibility(boolean isVisible)
+    {
+        LinearLayout buttonContainer = findViewById(R.id.buttonsContainer);
+        if (isVisible)
+        {
+            buttonContainer.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            buttonContainer.setVisibility(View.GONE);
+        }
+    }
+
+    private void changeEmailRegisterFragmentVisibility(boolean isVisible) {
+
+        FragmentManager manager = getSupportFragmentManager();
+        Fragment emailRegister = manager.findFragmentById(R.id.fragment_register_place);
+        LinearLayout fragmentLoginLayout = findViewById(R.id.fragment_register_layout);
+        if (emailRegister != null)
+        {
+            FragmentTransaction ft = manager.beginTransaction();
+            if (isVisible)
+            {
+                fragmentLoginLayout.setVisibility(View.VISIBLE);
+                ft.show(emailRegister);
+            } else {
+                fragmentLoginLayout.setVisibility(View.GONE);
+                ft.hide(emailRegister);
+            }
+            ft.commit();
+        }
+    }
+
+    private void changeEmailLoginFragmentVisibility(boolean isVisible) {
+
+        FragmentManager manager = getSupportFragmentManager();
+        Fragment emailLogin = manager.findFragmentById(R.id.fragment_login_place);
+        LinearLayout fragmentLoginLayout = findViewById(R.id.fragment_login_layout);
+        if (emailLogin != null)
+        {
+            FragmentTransaction ft = manager.beginTransaction();
+            if (isVisible)
+            {
+                fragmentLoginLayout.setVisibility(View.VISIBLE);
+                ft.show(emailLogin);
+            } else {
+                fragmentLoginLayout.setVisibility(View.GONE);
+                ft.hide(emailLogin);
+            }
+            ft.commit();
+        }
+    }
+
 }
 

@@ -18,6 +18,8 @@ package com.rozdoum.socialcomponents.main.login;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
+import android.util.Patterns;
 
 import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,6 +33,7 @@ import com.rozdoum.socialcomponents.Constants;
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.base.BasePresenter;
 import com.rozdoum.socialcomponents.main.interactors.ProfileInteractor;
+import com.rozdoum.socialcomponents.main.login.email_register.RegisterUserData;
 import com.rozdoum.socialcomponents.managers.ProfileManager;
 import com.rozdoum.socialcomponents.utils.LogUtil;
 import com.rozdoum.socialcomponents.utils.PreferencesUtil;
@@ -81,9 +84,53 @@ class LoginPresenter extends BasePresenter<LoginView> {
         }
     }
 
-    public void OnRegisterWithEmailClick() {
+    public void OnRegisterNewUserLinkClick() {
         if (checkInternetConnection()) {
-            ifViewAttached(LoginView::registerWithEmail);
+            ifViewAttached(LoginView::registerNewUserLink);
+        }
+    }
+
+    public void OnLoginClick(String email, String password) {
+        if (checkInternetConnection()) {
+            ifViewAttached(view ->
+            {
+                if (!isValidEmail(email))
+                {
+                    view.showSnackBar(R.string.error_invalid_email);
+                }
+                else if (TextUtils.isEmpty(password))
+                {
+                    view.showSnackBar(R.string.error_invalid_password);
+                }
+                else
+                {
+                    view.login(email, password);
+                }
+            });
+        }
+    }
+
+    public void OnRegisterClick(RegisterUserData userData) {
+        if (checkInternetConnection()) {
+            ifViewAttached(view ->
+            {
+                if (!isValidEmail(userData.email))
+                {
+                    view.showSnackBar(R.string.error_invalid_email);
+                }
+                else if (!isValidPassword(userData.password))
+                {
+                    view.showSnackBar(R.string.error_invalid_password);
+                }
+                else if (!userData.password.equals(userData.rePassword))
+                {
+                    view.showSnackBar(R.string.error_invalid_re_password);
+                }
+                else
+                {
+                    view.registerNewUser(userData);
+                }
+            });
         }
     }
 
@@ -141,5 +188,13 @@ class LoginPresenter extends BasePresenter<LoginView> {
 
             view.hideProgress();
         });
+    }
+
+    private static boolean isValidEmail(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
+    }
+
+    private boolean isValidPassword(CharSequence target) {
+        return (!TextUtils.isEmpty(target) && target.length() > 4);
     }
 }
