@@ -104,6 +104,7 @@ class LoginPresenter extends BasePresenter<LoginView> {
                 }
                 else
                 {
+                    view.showProgress();
                     view.login(email, password);
                 }
             });
@@ -128,6 +129,7 @@ class LoginPresenter extends BasePresenter<LoginView> {
                 }
                 else
                 {
+                    view.showProgress();
                     view.registerNewUser(userData);
                 }
             });
