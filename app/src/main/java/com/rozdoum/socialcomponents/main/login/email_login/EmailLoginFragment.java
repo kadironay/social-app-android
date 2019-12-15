@@ -44,28 +44,21 @@ public class EmailLoginFragment extends Fragment {
         });
 
         Button login = view.findViewById(R.id.btn_login);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fragmentFinishedListener != null)
-                {
-                    fragmentFinishedListener.OnLoginClicked(
-                            emailDescription.getText().toString(),
-                            passwordDescription.getText().toString()
-                    );
-                }
+        login.setOnClickListener(view12 -> {
+            if (fragmentFinishedListener != null)
+            {
+                fragmentFinishedListener.OnLoginClicked(
+                        emailDescription.getText().toString(),
+                        passwordDescription.getText().toString()
+                );
             }
         });
 
         TextView registerNewUser = view.findViewById(R.id.registerWithEmail);
-        registerNewUser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (fragmentFinishedListener != null)
-                {
-                    fragmentFinishedListener.OnRegisterNewUserLinkClicked(FRAGMENT_ID);
-
-                }
+        registerNewUser.setOnClickListener(view13 -> {
+            if (fragmentFinishedListener != null)
+            {
+                fragmentFinishedListener.OnRegisterNewUserLinkClicked(FRAGMENT_ID);
             }
         });
 

@@ -46,15 +46,12 @@ public class EmailRegisterFragment extends Fragment {
         });
 
         Button register = view.findViewById(R.id.btn_register);
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RegisterUserData user = new RegisterUserData();
-                user.email = emailDescription.getText().toString();
-                user.password = passwordDescription.getText().toString();
-                user.rePassword = rePasswordDescription.getText().toString();
-                fragmentFinishedListener.OnRegisterClicked(user);
-            }
+        register.setOnClickListener(view12 -> {
+            RegisterUserData user = new RegisterUserData();
+            user.email = emailDescription.getText().toString();
+            user.password = passwordDescription.getText().toString();
+            user.rePassword = rePasswordDescription.getText().toString();
+            fragmentFinishedListener.OnRegisterClicked(user);
         });
 
         return view;
