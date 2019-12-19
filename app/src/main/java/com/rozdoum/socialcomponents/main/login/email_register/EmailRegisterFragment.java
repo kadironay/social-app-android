@@ -8,12 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.rozdoum.socialcomponents.R;
+import com.rozdoum.socialcomponents.main.base.BaseFragment;
 import com.rozdoum.socialcomponents.main.login.OnFragmentFinishedListener;
 
-public class EmailRegisterFragment extends Fragment {
+public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, EmailRegisterPresenter>
+        implements EmailRegisterView {
 
     public static final int FRAGMENT_ID = 5002;
     private OnFragmentFinishedListener fragmentFinishedListener;
@@ -23,6 +25,15 @@ public class EmailRegisterFragment extends Fragment {
 
     public EmailRegisterFragment() {
         // Required empty public constructor
+    }
+
+    @NonNull
+    @Override
+    public EmailRegisterPresenter createPresenter() {
+        if (presenter == null) {
+            return new EmailRegisterPresenter(getContext());
+        }
+        return presenter;
     }
 
 

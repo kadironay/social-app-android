@@ -9,12 +9,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.rozdoum.socialcomponents.R;
+import com.rozdoum.socialcomponents.main.base.BaseFragment;
 import com.rozdoum.socialcomponents.main.login.OnFragmentFinishedListener;
 
-public class EmailLoginFragment extends Fragment {
+public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginPresenter>
+        implements EmailLoginView {
 
     public static final int FRAGMENT_ID = 5001;
     private OnFragmentFinishedListener fragmentFinishedListener;
@@ -23,6 +25,15 @@ public class EmailLoginFragment extends Fragment {
 
     public EmailLoginFragment() {
 
+    }
+
+    @NonNull
+    @Override
+    public EmailLoginPresenter createPresenter() {
+        if (presenter == null) {
+            return new EmailLoginPresenter(getContext());
+        }
+        return presenter;
     }
 
     @Override
