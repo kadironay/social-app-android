@@ -12,10 +12,11 @@ import androidx.annotation.NonNull;
 
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.base.BaseFragment;
+import com.rozdoum.socialcomponents.main.login.OnBackPressedListener;
 import com.rozdoum.socialcomponents.main.login.OnFragmentFinishedListener;
 
 public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, EmailRegisterPresenter>
-        implements EmailRegisterView {
+        implements EmailRegisterView, OnBackPressedListener {
 
     public static final int FRAGMENT_ID = 5002;
     private OnFragmentFinishedListener fragmentFinishedListener;
@@ -48,13 +49,7 @@ public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, Email
         rePasswordDescription = view.findViewById(R.id.et_repassword);
 
         ImageView buttonBack = view.findViewById(R.id.button_back);
-        buttonBack.setOnClickListener(view1 -> {
-
-            if (fragmentFinishedListener != null)
-            {
-                fragmentFinishedListener.OnFragmentFinished(FRAGMENT_ID);
-            }
-        });
+        buttonBack.setOnClickListener(view1 -> doBack());
 
         Button register = view.findViewById(R.id.btn_register);
         register.setOnClickListener(view12 -> {
@@ -70,5 +65,20 @@ public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, Email
 
     public void setOnFragmentFinishListener(OnFragmentFinishedListener listener) {
         fragmentFinishedListener = listener;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        return doBack();
+    }
+
+    private boolean doBack()
+    {
+        if (fragmentFinishedListener != null)
+        {
+            fragmentFinishedListener.OnFragmentFinished(FRAGMENT_ID);
+            return true;
+        }
+        return false;
     }
 }

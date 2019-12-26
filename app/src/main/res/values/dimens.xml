@@ -64,6 +64,6 @@
     <dimen name="refresh_layout_end_offset">24dp</dimen>
     <dimen name="refresh_layout_start_offset">-24dp</dimen>
 
-    <dimen name="edit_profile_container_title_top_padding">28dp</dimen>
+    <dimen name="edit_profile_container_title_top_padding">40dp</dimen>
     <dimen name="edit_profile_container_title_bottom_padding">12dp</dimen>
 </resources>

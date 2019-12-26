@@ -50,6 +50,7 @@ import com.rozdoum.socialcomponents.utils.LogUtil;
 import com.rozdoum.socialcomponents.utils.LogoutHelper;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView, GoogleApiClient.OnConnectionFailedListener, OnFragmentFinishedListener {
     private static final String TAG = LoginActivity.class.getSimpleName();
@@ -62,6 +63,8 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
 
     private CallbackManager mCallbackManager;
     private String profilePhotoUrlLarge;
+
+    private Stack<OnBackPressedListener> backPressListeners = new Stack<OnBackPressedListener>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -344,9 +347,11 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             FragmentTransaction ft = manager.beginTransaction();
             if (isVisible)
             {
+                addBackPressListener((OnBackPressedListener) emailRegister);
                 fragmentLoginLayout.setVisibility(View.VISIBLE);
                 ft.show(emailRegister);
             } else {
+                removeBackPressListener((OnBackPressedListener) emailRegister);
                 fragmentLoginLayout.setVisibility(View.GONE);
                 ft.hide(emailRegister);
             }
@@ -364,9 +369,11 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             FragmentTransaction ft = manager.beginTransaction();
             if (isVisible)
             {
+                addBackPressListener((OnBackPressedListener) emailLogin);
                 fragmentLoginLayout.setVisibility(View.VISIBLE);
                 ft.show(emailLogin);
             } else {
+                removeBackPressListener((OnBackPressedListener) emailLogin);
                 fragmentLoginLayout.setVisibility(View.GONE);
                 ft.hide(emailLogin);
             }
@@ -374,5 +381,22 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         }
     }
 
+    @Override
+    public void onBackPressed() {
+
+        for(OnBackPressedListener backPressListener : backPressListeners) {
+            if(backPressListener.onBackPressed()) return;
+        }
+
+        super.onBackPressed();
+    }
+
+    public void addBackPressListener(OnBackPressedListener backPressListener) {
+        backPressListeners.add(backPressListener);
+    }
+
+    public void removeBackPressListener(OnBackPressedListener backPressListener) {
+        backPressListeners.remove(backPressListener);
+    }
 }
 

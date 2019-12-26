@@ -99,15 +99,11 @@
     <string name="button_login_with_email">Login with email</string>
     <string name="text_register_with_email">Sign up for an account now.</string>
     <string name="text_register_with_email_info">Not a taster yet?</string>
+    <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="e_mail">Email</string>
     <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
-    <string name="text_login_button">Login</string>
-    <string name="register">Register</string>
-    <string name="your_name">Full Name</string>
-    <string name="swipe_right_for_login">Swipe Right for Login</string>
-    <string name="swipe_left_for_register">Swipe Left for Register</string>
 
 
     <string name="loading">Loading …</string>
@@ -182,6 +178,12 @@
     <string name="message_comment_was_removed">Comment was removed</string>
     <string name="message_comment_was_edited">Comment was edited</string>
     <string name="title_edit_comment">Edit comment</string>
+
+    <string name="edit_profile_personal_information_label">Personal Information</string>
+    <string name="edit_profile_contact_information_label">Contact Information</string>
+    <string name="edit_profile_address_label">Address</string>
+    <string name="edit_profile_more_information_label">More Information</string>
+
 
     <!--Follow-->
     <string name="button_follow_title">Follow</string>

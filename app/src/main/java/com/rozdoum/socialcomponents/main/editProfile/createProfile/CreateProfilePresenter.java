@@ -41,6 +41,7 @@ class CreateProfilePresenter extends EditProfilePresenter<CreateProfileView> {
         ifViewAttached(view -> {
             view.setFirstName(profile.getFirstName());
             view.setLastName(profile.getLastName());
+            view.setEmail(profile.getEmail());
 
             if (profile.getPhotoUrl() != null) {
                 view.setProfilePhoto(profile.getPhotoUrl());

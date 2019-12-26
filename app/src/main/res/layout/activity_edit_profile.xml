@@ -50,8 +50,8 @@
                 android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
                 android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Personal Information"
-                android:textSize="20dp" />
+                android:text="@string/edit_profile_personal_information_label"
+                android:textSize="20sp" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -97,8 +97,8 @@
                 android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
                 android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Contact information"
-                android:textSize="20dp" />
+                android:text="@string/edit_profile_contact_information_label"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -144,8 +144,8 @@
                 android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
                 android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
                 android:fontFamily="@font/roboto_regular"
-                android:text="Address"
-                android:textSize="20dp" />
+                android:text="@string/edit_profile_address_label"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -244,8 +244,8 @@
                 android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
                 android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
                 android:fontFamily="@font/roboto_regular"
-                android:text="More information"
-                android:textSize="20dp" />
+                android:text="@string/edit_profile_more_information_label"
+                android:textSize="20sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

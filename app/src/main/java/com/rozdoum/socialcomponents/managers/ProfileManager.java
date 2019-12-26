@@ -64,12 +64,15 @@ public class ProfileManager extends FirebaseListenersManager {
         Profile profile = new Profile(firebaseUser.getUid());
         profile.setEmail(firebaseUser.getEmail());
         String fullName = firebaseUser.getDisplayName();
-        String[] splitDisplayName = fullName.split(" ");
-        if (splitDisplayName.length >= 2)
+        if (fullName != null)
         {
-            profile.setFirstName(splitDisplayName[0]);
-            profile.setLastName(TextUtils.join(" ", Arrays.copyOfRange(
-                    splitDisplayName, 1, splitDisplayName.length)));
+            String[] splitDisplayName = fullName.split(" ");
+            if (splitDisplayName.length >= 2)
+            {
+                profile.setFirstName(splitDisplayName[0]);
+                profile.setLastName(TextUtils.join(" ", Arrays.copyOfRange(
+                        splitDisplayName, 1, splitDisplayName.length)));
+            }
         }
         profile.setPhotoUrl(largeAvatarURL != null ? largeAvatarURL :
                 firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : "");

@@ -16,12 +16,13 @@ import androidx.annotation.NonNull;
 
 import com.rozdoum.socialcomponents.R;
 import com.rozdoum.socialcomponents.main.base.BaseFragment;
+import com.rozdoum.socialcomponents.main.login.OnBackPressedListener;
 import com.rozdoum.socialcomponents.main.login.OnFragmentFinishedListener;
 
 import java.util.Objects;
 
 public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginPresenter>
-        implements EmailLoginView {
+        implements EmailLoginView, OnBackPressedListener {
 
     public static final int FRAGMENT_ID = 5001;
     private OnFragmentFinishedListener fragmentFinishedListener;
@@ -51,13 +52,7 @@ public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginP
         passwordDescription = view.findViewById(R.id.et_password);
 
         ImageView buttonBack = view.findViewById(R.id.button_back);
-        buttonBack.setOnClickListener(view1 -> {
-
-            if (fragmentFinishedListener != null)
-            {
-                fragmentFinishedListener.OnFragmentFinished(FRAGMENT_ID);
-            }
-        });
+        buttonBack.setOnClickListener(view1 -> doBack());
 
         Button login = view.findViewById(R.id.btn_login);
         login.setOnClickListener(view12 -> {
@@ -87,8 +82,23 @@ public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginP
         fragmentFinishedListener = listener;
     }
 
+    @Override
+    public boolean onBackPressed() {
+        return doBack();
+    }
+
     private static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+    private boolean doBack()
+    {
+        if (fragmentFinishedListener != null)
+        {
+            fragmentFinishedListener.OnFragmentFinished(FRAGMENT_ID);
+            return true;
+        }
+        return false;
     }
 }
