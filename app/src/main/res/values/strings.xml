@@ -67,14 +67,25 @@
     <string name="button_title_continue">Continue</string>
 
     <!-- Strings related to registration and login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_name">Name</string>
+    <string name="prompt_first_name">First Name</string>
+    <string name="prompt_last_name">Last Name</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_conf_password">Confirm password</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_phone_number">Mobile phone number</string>
+    <string name="prompt_self_description">Self description</string>
+    <string name="prompt_address_country">Country</string>
+    <string name="prompt_address_postal_code">Postal code</string>
+    <string name="prompt_address_province">Province (Optional)</string>
+    <string name="prompt_address_city">City</string>
+    <string name="prompt_address_street">Street</string>
+    <string name="prompt_address_building_number">Building number</string>
     <string name="action_create_profile">Continue</string>
     <string name="error_field_required">This field is required</string>
     <string name="error_profile_name_length">Max length of the name should be less than 120 symbols</string>
     <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_phone_number">This phone number is invalid</string>
+    <string name="error_invalid_address">This address is invalid</string>
     <string name="error_confirm_password">Wrong password confirmation</string>
     <string name="action_sign_in">Sign in</string>
     <string name="permissions_not_granted">Cancelling, required permissions are not granted</string>
@@ -86,14 +97,14 @@
     <string name="button_login_with_facebook">Login with facebook</string>
     <string name="button_login_with_google">Login with google</string>
     <string name="button_login_with_email">Login with email</string>
-    <string name="text_register_with_email">Register with email!</string>
+    <string name="text_register_with_email">Sign up for an account now.</string>
+    <string name="text_register_with_email_info">Not a taster yet?</string>
     <string name="login">Login</string>
     <string name="password">Password</string>
     <string name="e_mail">Email</string>
     <string name="tag">Let\'s join us and \nBuild your relationship with others</string>
     <string name="text_login_button">Login</string>
     <string name="register">Register</string>
-    <string name="re_type_password">Re-type Password</string>
     <string name="your_name">Full Name</string>
     <string name="swipe_right_for_login">Swipe Right for Login</string>
     <string name="swipe_left_for_register">Swipe Left for Register</string>

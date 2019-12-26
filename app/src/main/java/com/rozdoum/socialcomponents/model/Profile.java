@@ -25,12 +25,27 @@ import java.io.Serializable;
 public class Profile implements Serializable, LazyLoading {
 
     private String id;
-    private String username;
+    private String firstName;
+    private String lastName;
     private String email;
+    private String phoneNumber;
     private String photoUrl;
     private long likesCount;
     private String registrationToken;
     private ItemType itemType;
+
+    private boolean isCook;
+    private String autobiography;
+    private String locationCoordinates;
+    private double averageRating;
+    private String country;
+    private String postCode;
+    private String province;
+    private String city;
+    private String street;
+    private String buildingNumber;
+    private String specificInfo;
+
 
     public Profile() {
         // Default constructor required for calls to DataSnapshot.getValue(Profile.class)
@@ -52,12 +67,20 @@ public class Profile implements Serializable, LazyLoading {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getEmail() {
@@ -92,6 +115,46 @@ public class Profile implements Serializable, LazyLoading {
         this.registrationToken = registrationToken;
     }
 
+    public boolean isCook() {
+        return isCook;
+    }
+
+    public void setCook(boolean cook) {
+        isCook = cook;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAutobiography() {
+        return autobiography;
+    }
+
+    public void setAutobiography(String autobiography) {
+        this.autobiography = autobiography;
+    }
+
+    public String getLocationCoordinates() {
+        return locationCoordinates;
+    }
+
+    public void setLocationCoordinates(String locationCoordinates) {
+        this.locationCoordinates = locationCoordinates;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+
     @Override
     public ItemType getItemType() {
         return itemType;
@@ -100,5 +163,61 @@ public class Profile implements Serializable, LazyLoading {
     @Override
     public void setItemType(ItemType itemType) {
         this.itemType = itemType;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getBuildingNumber() {
+        return buildingNumber;
+    }
+
+    public void setBuildingNumber(String buildingNumber) {
+        this.buildingNumber = buildingNumber;
+    }
+
+    public String getSpecificInfo() {
+        return specificInfo;
+    }
+
+    public void setSpecificInfo(String specificInfo) {
+        this.specificInfo = specificInfo;
     }
 }

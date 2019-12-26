@@ -23,11 +23,55 @@ import com.rozdoum.socialcomponents.main.pickImageBase.PickImageView;
  */
 
 public interface EditProfileView extends PickImageView {
-    void setName(String username);
-
     void setProfilePhoto(String photoUrl);
 
-    String getNameText();
+    void setFirstName(String username);
 
-    void setNameError(String string);
+    String getFirstNameText();
+
+    void setFirstNameError(String string);
+
+    void setLastName(String username);
+
+    String getLastNameText();
+
+    void setLastNameError(String string);
+
+    void setEmail(String email);
+
+    void setPhoneNumber(String phone);
+
+    String getPhoneNumberText();
+
+    void setPhoneNumberError(String string);
+
+    void setStreet(String street);
+
+    String getStreetText();
+
+    void setStreetError(String string);
+
+    void setBuildingNumber(String buildingNumber);
+
+    String getBuildingNumberText();
+
+    void setBuildingNumberError(String string);
+
+    void setPostCode(String postCode);
+
+    String getPostCodeText();
+
+    void setPostCodeError(String string);
+
+    void setCity(String city);
+
+    String getCityText();
+
+    void setCityError(String string);
+
+    void setCountry(String country);
+
+    String getCountryText();
+
+    void setCountryError(String string);
 }

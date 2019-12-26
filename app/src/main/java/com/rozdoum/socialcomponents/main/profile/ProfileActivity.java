@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Spannable;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,11 +31,14 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SimpleItemAnimator;
@@ -82,6 +86,9 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
     private ProgressBar progressBar;
     private TextView postsCounterTextView;
     private ProgressBar postsProgressBar;
+    private RatingBar ratingBar;
+    private ImageView locationImageView;
+    private TextView cityInfoTextView;
 
     private FirebaseAuth mAuth;
     private GoogleApiClient mGoogleApiClient;
@@ -116,6 +123,9 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
         }
 
         // Set up the login form.
+        ratingBar = findViewById(R.id.ratingBar);
+        locationImageView = findViewById(R.id.locationImageView);
+        cityInfoTextView = findViewById(R.id.cityInfoTextView);
         progressBar = findViewById(R.id.progressBar);
         imageView = findViewById(R.id.imageView);
         nameEditText = findViewById(R.id.nameEditText);
@@ -126,6 +136,18 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
         postsProgressBar = findViewById(R.id.postsProgressBar);
         followButton = findViewById(R.id.followButton);
         swipeContainer = findViewById(R.id.swipeContainer);
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            try {
+                Drawable progressDrawable = ratingBar.getProgressDrawable();
+                if (progressDrawable != null) {
+                    DrawableCompat.setTint(progressDrawable,
+                            ContextCompat.getColor(getApplicationContext(), R.color.primary));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         initListeners();
 
@@ -141,6 +163,8 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
         presenter.loadProfile(this, userID);
         presenter.getFollowersCount(userID);
         presenter.getFollowingsCount(userID);
+        presenter.getAvgRating(userID);
+        presenter.getCityInfo(userID);
 
         if (mGoogleApiClient != null) {
             mGoogleApiClient.connect();
@@ -399,6 +423,27 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
     }
 
     @Override
+    public void updateAvgRating(double rating) {
+        ratingBar.setVisibility(View.VISIBLE);
+        ratingBar.setRating((float)rating);
+    }
+
+    @Override
+    public void updateCityInfo(String city) {
+        if (TextUtils.isEmpty(city))
+        {
+            locationImageView.setVisibility(View.GONE);
+            cityInfoTextView.setVisibility(View.GONE);
+        }
+        else
+        {
+            locationImageView.setVisibility(View.VISIBLE);
+            cityInfoTextView.setVisibility(View.VISIBLE);
+            cityInfoTextView.setText(city);
+        }
+    }
+
+    @Override
     public void setFollowStateChangeResultOk() {
         setResult(UsersListActivity.UPDATE_FOLLOWING_STATE_RESULT_OK);
     }
@@ -428,7 +473,10 @@ public class ProfileActivity extends BaseActivity<ProfileView, ProfilePresenter>
                 return true;
             case R.id.signOut:
                 LogoutHelper.signOut(mGoogleApiClient, this);
-                startMainActivity();
+                if (checkAuthorization())
+                {
+                    startMainActivity();
+                }
                 return true;
             case R.id.createPost:
                 presenter.onCreatePostClick();

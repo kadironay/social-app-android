@@ -34,9 +34,9 @@ import java.util.TimeZone;
 
 public class FormatterUtil {
 
-    public static String firebaseDBDate = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
-    public static String firebaseDBDay = "yyyy-MM-dd";
-    public static final long NOW_TIME_RANGE = DateUtils.MINUTE_IN_MILLIS * 5; // 5 minutes
+    private static String firebaseDBDate = "yyyy-MM-dd'T'HH:mm:ss.SSSZ";
+    private static String firebaseDBDay = "yyyy-MM-dd";
+    private static final long NOW_TIME_RANGE = DateUtils.MINUTE_IN_MILLIS * 5; // 5 minutes
 
     public static String dateTime = "yyyy-MM-dd HH:mm:ss";
 

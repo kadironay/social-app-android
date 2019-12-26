@@ -40,6 +40,8 @@ import com.rozdoum.socialcomponents.utils.GlideApp;
 import com.rozdoum.socialcomponents.utils.ImageUtil;
 import com.rozdoum.socialcomponents.views.ExpandableTextView;
 
+import java.text.MessageFormat;
+
 /**
  * Created by alexey on 10.05.17.
  */
@@ -101,7 +103,8 @@ public class CommentViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onObjectChanged(Profile obj) {
                 if (obj != null) {
-                    String userName = obj.getUsername();
+                    String userName = MessageFormat.format("{0} {1}",
+                            obj.getFirstName(), obj.getLastName());
                     fillComment(userName, comment, expandableTextView, dateTextView);
 
                     if (obj.getPhotoUrl() != null) {

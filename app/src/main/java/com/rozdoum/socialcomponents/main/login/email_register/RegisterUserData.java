@@ -1,6 +1,8 @@
 package com.rozdoum.socialcomponents.main.login.email_register;
 
-public class RegisterUserData {
+import java.io.Serializable;
+
+public class RegisterUserData implements Serializable {
     public String email;
     public String password;
     public String rePassword;

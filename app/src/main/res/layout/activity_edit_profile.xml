@@ -16,6 +16,8 @@
             android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/large_intrinsic_padding"
+            android:layout_marginEnd="@dimen/large_intrinsic_padding"
             android:focusableInTouchMode="true"
             android:orientation="vertical">
 
@@ -40,18 +42,229 @@
 
             </RelativeLayout>
 
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/intrinsic_padding"
+                android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
+                android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Personal Information"
+                android:textSize="20dp" />
+
+
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/nameEditText"
+                    android:id="@+id/firstNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_name"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_first_name"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/lastNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_last_name"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/intrinsic_padding"
+                android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
+                android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Contact information"
+                android:textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/emailEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:enabled="false"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_email"
+                    android:imeOptions="actionDone"
+                    android:inputType="textEmailAddress|none"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/phoneEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_phone_number"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/intrinsic_padding"
+                android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
+                android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Address"
+                android:textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/streetEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_address_street"
                     android:imeOptions="actionDone"
                     android:inputType="text"
-                    android:maxLines="1"/>
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/buildingNumberEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_address_building_number"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberDecimal"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/postCodeEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_address_postal_code"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPostalAddress"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/cityEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_address_city"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/countryEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:hint="@string/prompt_address_country"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="15dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/intrinsic_padding"
+                android:layout_marginTop="@dimen/edit_profile_container_title_top_padding"
+                android:layout_marginBottom="@dimen/edit_profile_container_title_bottom_padding"
+                android:fontFamily="@font/roboto_regular"
+                android:text="More information"
+                android:textSize="20dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/selfDescriptionEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/et_custom"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="top|start"
+                    android:hint="@string/prompt_self_description"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="4"
+                    android:maxLength="2000"
+                    android:maxLines="8"
+                    android:padding="15dp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

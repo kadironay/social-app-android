@@ -36,6 +36,8 @@ import com.rozdoum.socialcomponents.utils.GlideApp;
 import com.rozdoum.socialcomponents.utils.ImageUtil;
 import com.rozdoum.socialcomponents.views.FollowButton;
 
+import java.text.MessageFormat;
+
 /**
  * Created by Alexey on 03.05.18.
  */
@@ -94,7 +96,8 @@ public class UserViewHolder extends RecyclerView.ViewHolder {
     }
 
     protected void fillInProfileFields(Profile profile) {
-        nameTextView.setText(profile.getUsername());
+        nameTextView.setText(MessageFormat.format("{0} {1}",
+                profile.getFirstName(), profile.getLastName()));
 
         String currentUserId = FirebaseAuth.getInstance().getUid();
         if (currentUserId != null) {

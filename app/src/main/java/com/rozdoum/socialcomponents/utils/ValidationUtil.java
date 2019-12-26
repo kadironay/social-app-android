@@ -24,11 +24,20 @@ import android.util.Patterns;
 
 import com.rozdoum.socialcomponents.Constants;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Kristina on 8/8/15.
  */
 public class ValidationUtil {
     private static final String [] IMAGE_TYPE = new String[]{"jpg", "png", "jpeg", "bmp", "jp2", "psd", "tif", "gif"};
+
+    public static boolean isPhoneNumberValid(String phone) {
+        if(!Pattern.matches("[a-zA-Z]+", phone)) {
+            return phone.length() > 6 && phone.length() <= 13;
+        }
+        return false;
+    }
 
     public static boolean isEmailValid(String email) {
         String stricterFilterString = "[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}";

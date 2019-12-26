@@ -18,6 +18,7 @@ package com.rozdoum.socialcomponents.managers;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,6 +31,8 @@ import com.rozdoum.socialcomponents.managers.listeners.OnObjectExistListener;
 import com.rozdoum.socialcomponents.managers.listeners.OnProfileCreatedListener;
 import com.rozdoum.socialcomponents.model.Profile;
 import com.rozdoum.socialcomponents.utils.PreferencesUtil;
+
+import java.util.Arrays;
 
 /**
  * Created by Kristina on 10/28/16.
@@ -60,7 +63,14 @@ public class ProfileManager extends FirebaseListenersManager {
     public Profile buildProfile(FirebaseUser firebaseUser, String largeAvatarURL) {
         Profile profile = new Profile(firebaseUser.getUid());
         profile.setEmail(firebaseUser.getEmail());
-        profile.setUsername(firebaseUser.getDisplayName());
+        String fullName = firebaseUser.getDisplayName();
+        String[] splitDisplayName = fullName.split(" ");
+        if (splitDisplayName.length >= 2)
+        {
+            profile.setFirstName(splitDisplayName[0]);
+            profile.setLastName(TextUtils.join(" ", Arrays.copyOfRange(
+                    splitDisplayName, 1, splitDisplayName.length)));
+        }
         profile.setPhotoUrl(largeAvatarURL != null ? largeAvatarURL :
                 firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : "");
         return profile;

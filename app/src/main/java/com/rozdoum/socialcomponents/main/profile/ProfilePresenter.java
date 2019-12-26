@@ -40,6 +40,8 @@ import com.rozdoum.socialcomponents.model.Profile;
 import com.rozdoum.socialcomponents.utils.LogUtil;
 import com.rozdoum.socialcomponents.views.FollowButton;
 
+import java.text.MessageFormat;
+
 /**
  * Created by Alexey on 03.05.18.
  */
@@ -127,6 +129,35 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
         });
     }
 
+    public void getAvgRating(String userID) {
+        profileManager.getProfileSingleValue(userID, new OnObjectChangedListenerSimple<Profile>() {
+            @Override
+            public void onObjectChanged(Profile obj) {
+                profile = obj;
+                ifViewAttached(view -> {
+                    if (profile != null) {
+                        double rating = profile.getAverageRating();
+                        view.updateAvgRating(rating > 5.0 ? 5.0 : rating);
+                    }
+                });
+            }
+        });
+    }
+
+    public void getCityInfo(String userID) {
+        profileManager.getProfileSingleValue(userID, new OnObjectChangedListenerSimple<Profile>() {
+            @Override
+            public void onObjectChanged(Profile obj) {
+                profile = obj;
+                ifViewAttached(view -> {
+                    if (profile != null) {
+                        view.updateCityInfo(profile.getCity());
+                    }
+                });
+            }
+        });
+    }
+
     void onPostClick(Post post, View postItemView) {
         PostManager.getInstance(context).isPostExistSingleValue(post.getId(), exist -> {
             ifViewAttached(view -> {
@@ -167,7 +198,9 @@ class ProfilePresenter extends BasePresenter<ProfileView> {
             public void onObjectChanged(Profile obj) {
                 profile = obj;
                 ifViewAttached(view -> {
-                    view.setProfileName(profile.getUsername());
+                    String userName = MessageFormat.format("{0} {1}",
+                            profile.getFirstName(), profile.getLastName());
+                    view.setProfileName(userName);
 
                     if (profile.getPhotoUrl() != null) {
                         view.setProfilePhoto(profile.getPhotoUrl());

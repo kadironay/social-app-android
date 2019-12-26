@@ -51,7 +51,15 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                 profile = obj;
                 ifViewAttached(view -> {
                     if (profile != null) {
-                        view.setName(profile.getUsername());
+                        view.setFirstName(profile.getFirstName());
+                        view.setLastName(profile.getLastName());
+                        view.setEmail(profile.getEmail());
+                        view.setPhoneNumber(profile.getPhoneNumber());
+                        view.setStreet(profile.getStreet());
+                        view.setBuildingNumber(profile.getBuildingNumber());
+                        view.setPostCode(profile.getPostCode());
+                        view.setCity(profile.getCity());
+                        view.setCountry(profile.getCountry());
 
                         if (profile.getPhotoUrl() != null) {
                             view.setProfilePhoto(profile.getPhotoUrl());
@@ -59,7 +67,7 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
                     }
 
                     view.hideProgress();
-                    view.setNameError(null);
+                    view.setFirstNameError(null);
                 });
             }
         });
@@ -68,22 +76,78 @@ public class EditProfilePresenter<V extends EditProfileView> extends PickImagePr
     public void attemptCreateProfile(Uri imageUri) {
         if (checkInternetConnection()) {
             ifViewAttached(view -> {
-                view.setNameError(null);
+                view.setFirstNameError(null);
 
-                String name = view.getNameText().trim();
+                String firstName = view.getFirstNameText().trim();
+                String lastName = view.getLastNameText().trim();
+                String phoneNumber = view.getPhoneNumberText().trim();
+                String street = view.getStreetText().trim();
+                String buildingNumber = view.getBuildingNumberText().trim();
+                String postCode = view.getPostCodeText().trim();
+                String city = view.getCityText().trim();
+                String country = view.getCountryText().trim();
+
                 boolean cancel = false;
 
-                if (TextUtils.isEmpty(name)) {
-                    view.setNameError(context.getString(R.string.error_field_required));
+                if (TextUtils.isEmpty(firstName)) {
+                    view.setFirstNameError(context.getString(R.string.error_field_required));
                     cancel = true;
-                } else if (!ValidationUtil.isNameValid(name)) {
-                    view.setNameError(context.getString(R.string.error_profile_name_length));
+                } else if (!ValidationUtil.isNameValid(firstName)) {
+                    view.setFirstNameError(context.getString(R.string.error_profile_name_length));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(lastName)) {
+                    view.setLastNameError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                } else if (!ValidationUtil.isNameValid(lastName)) {
+                    view.setLastNameError(context.getString(R.string.error_profile_name_length));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(phoneNumber)) {
+                    view.setPhoneNumberError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                } else if (!ValidationUtil.isPhoneNumberValid(phoneNumber)) {
+                    view.setPhoneNumberError(context.getString(R.string.error_invalid_phone_number));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(street)) {
+                    view.setStreetError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(buildingNumber)) {
+                    view.setBuildingNumberError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(postCode)) {
+                    view.setPostCodeError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(city)) {
+                    view.setCityError(context.getString(R.string.error_field_required));
+                    cancel = true;
+                }
+
+                if (TextUtils.isEmpty(country)) {
+                    view.setCountryError(context.getString(R.string.error_field_required));
                     cancel = true;
                 }
 
                 if (!cancel) {
                     view.showProgress();
-                    profile.setUsername(name);
+                    profile.setFirstName(firstName);
+                    profile.setLastName(lastName);
+                    profile.setPhoneNumber(phoneNumber);
+                    profile.setStreet(street);
+                    profile.setBuildingNumber(buildingNumber);
+                    profile.setPostCode(postCode);
+                    profile.setCity(city);
+                    profile.setCountry(country);
                     createOrUpdateProfile(imageUri);
                 }
             });

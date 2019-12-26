@@ -34,6 +34,8 @@ import com.rozdoum.socialcomponents.model.Profile;
 import com.rozdoum.socialcomponents.utils.GlideApp;
 import com.rozdoum.socialcomponents.utils.ImageUtil;
 
+import java.text.MessageFormat;
+
 /**
  * Created by Alexey on 11.05.18.
  */
@@ -66,7 +68,8 @@ public class UnfollowConfirmationDialog extends DialogFragment {
         ImageView imageView = view.findViewById(R.id.imageView);
         TextView confirmationMessageTextView = view.findViewById(R.id.confirmationMessageTextView);
 
-        confirmationMessageTextView.setText(getString(R.string.unfollow_user_message, profile.getUsername()));
+        String userName = MessageFormat.format("{0} {1}", profile.getFirstName(), profile.getLastName());
+        confirmationMessageTextView.setText(getString(R.string.unfollow_user_message, userName));
 
         ImageUtil.loadImage(GlideApp.with(this), profile.getPhotoUrl(), imageView);
 

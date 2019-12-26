@@ -38,6 +38,10 @@ public interface ProfileView extends BaseView {
 
     void updateFollowingsCount(int count);
 
+    void updateAvgRating(double rating);
+
+    void updateCityInfo(String city);
+
     void setFollowStateChangeResultOk();
 
     void openPostDetailsActivity(Post post, View postItemView);
@@ -65,5 +69,4 @@ public interface ProfileView extends BaseView {
     void onPostRemoved();
 
     void onPostUpdated();
-
 }

@@ -38,6 +38,8 @@ import com.rozdoum.socialcomponents.managers.listeners.OnPostChangedListener;
 import com.rozdoum.socialcomponents.model.Post;
 import com.rozdoum.socialcomponents.model.Profile;
 
+import java.text.MessageFormat;
+
 /**
  * Created by Alexey on 03.05.18.
  */
@@ -123,7 +125,9 @@ class PostDetailsPresenter extends BasePresenter<PostDetailsView> {
                             view.loadAuthorPhoto(profile.getPhotoUrl());
                         }
 
-                        view.setAuthorName(profile.getUsername());
+                        String userName = MessageFormat.format("{0} {1}",
+                                profile.getFirstName(), profile.getLastName());
+                        view.setAuthorName(userName);
                     });
                 }
             });

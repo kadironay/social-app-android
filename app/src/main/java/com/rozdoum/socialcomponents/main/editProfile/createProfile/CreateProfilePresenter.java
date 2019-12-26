@@ -39,7 +39,8 @@ class CreateProfilePresenter extends EditProfilePresenter<CreateProfileView> {
         profile = profileManager.buildProfile(firebaseUser, largeAvatarURL);
 
         ifViewAttached(view -> {
-            view.setName(profile.getUsername());
+            view.setFirstName(profile.getFirstName());
+            view.setLastName(profile.getLastName());
 
             if (profile.getPhotoUrl() != null) {
                 view.setProfilePhoto(profile.getPhotoUrl());
