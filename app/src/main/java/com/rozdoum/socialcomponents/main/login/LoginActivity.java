@@ -256,6 +256,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                     } else {
                         LogUtil.logDebug(TAG, "Failed to register");
                         showSnackBar("Failed to register");
+                        hideProgress();
                     }
                 });
     }
@@ -267,6 +268,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                     if (!task.isSuccessful()) {
                         LogUtil.logDebug(TAG, "Sign in with email failed!");
                         showSnackBar("Sign in with email failed!");
+                        hideProgress();
                     }
                 });
     }
