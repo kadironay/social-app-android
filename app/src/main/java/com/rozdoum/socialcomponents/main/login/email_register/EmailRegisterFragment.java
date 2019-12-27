@@ -57,7 +57,7 @@ public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, Email
             user.email = emailDescription.getText().toString();
             user.password = passwordDescription.getText().toString();
             user.rePassword = rePasswordDescription.getText().toString();
-            fragmentFinishedListener.OnRegisterClicked(user);
+            presenter.OnRegisterClicked(user);
         });
 
         return view;
@@ -65,6 +65,29 @@ public class EmailRegisterFragment extends BaseFragment<EmailRegisterView, Email
 
     public void setOnFragmentFinishListener(OnFragmentFinishedListener listener) {
         fragmentFinishedListener = listener;
+    }
+
+    public void register(RegisterUserData userData)
+    {
+        fragmentFinishedListener.OnRegisterClicked(userData);
+    }
+
+    @Override
+    public void setEmailError(String string) {
+        emailDescription.setError(string);
+        emailDescription.requestFocus();
+    }
+
+    @Override
+    public void setPasswordError(String string) {
+        passwordDescription.setError(string);
+        passwordDescription.requestFocus();
+    }
+
+    @Override
+    public void setConfirmPasswordError(String string) {
+        rePasswordDescription.setError(string);
+        rePasswordDescription.requestFocus();
     }
 
     @Override

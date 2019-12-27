@@ -59,10 +59,9 @@ public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginP
             if (fragmentFinishedListener != null)
             {
                 hideKeyboardFrom(Objects.requireNonNull(getContext()), view12);
-                fragmentFinishedListener.OnLoginClicked(
+                presenter.OnLoginClicked(
                         emailDescription.getText().toString(),
-                        passwordDescription.getText().toString()
-                );
+                        passwordDescription.getText().toString());
             }
         });
 
@@ -85,6 +84,24 @@ public class EmailLoginFragment extends BaseFragment<EmailLoginView, EmailLoginP
     @Override
     public boolean onBackPressed() {
         return doBack();
+    }
+
+    @Override
+    public void login(String email, String password)
+    {
+        fragmentFinishedListener.OnLoginClicked(email, password);
+    }
+
+    @Override
+    public void setEmailError(String error) {
+        emailDescription.setError(error);
+        emailDescription.requestFocus();
+    }
+
+    @Override
+    public void setPasswordError(String error) {
+        passwordDescription.setError(error);
+        passwordDescription.requestFocus();
     }
 
     private static void hideKeyboardFrom(Context context, View view) {

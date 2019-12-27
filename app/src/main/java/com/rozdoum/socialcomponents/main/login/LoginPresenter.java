@@ -95,19 +95,8 @@ class LoginPresenter extends BasePresenter<LoginView> {
         if (checkInternetConnection()) {
             ifViewAttached(view ->
             {
-                if (!ValidationUtil.isEmailValid(email))
-                {
-                    view.showSnackBar(R.string.error_invalid_email);
-                }
-                else if (TextUtils.isEmpty(password))
-                {
-                    view.showSnackBar(R.string.error_invalid_password);
-                }
-                else
-                {
-                    view.showProgress();
-                    view.login(email, password);
-                }
+                view.showProgress();
+                view.login(email, password);
             });
         }
     }
@@ -116,23 +105,8 @@ class LoginPresenter extends BasePresenter<LoginView> {
         if (checkInternetConnection()) {
             ifViewAttached(view ->
             {
-                if (!ValidationUtil.isEmailValid(userData.email))
-                {
-                    view.showSnackBar(R.string.error_invalid_email);
-                }
-                else if (!ValidationUtil.isPasswordValid(userData.password))
-                {
-                    view.showSnackBar(R.string.error_invalid_password);
-                }
-                else if (!userData.password.equals(userData.rePassword))
-                {
-                    view.showSnackBar(R.string.error_invalid_re_password);
-                }
-                else
-                {
-                    view.showProgress();
-                    view.registerNewUser(userData);
-                }
+                view.showProgress();
+                view.registerNewUser(userData);
             });
         }
     }
