@@ -43,6 +43,8 @@ public class Post implements Serializable, LazyLoading {
     private boolean hasComplain;
     private ItemType itemType;
 
+    private long price;
+
     public Post() {
         this.createdDate = new Date().getTime();
         itemType = ItemType.ITEM;
@@ -123,6 +125,14 @@ public class Post implements Serializable, LazyLoading {
 
     public void setWatchersCount(long watchersCount) {
         this.watchersCount = watchersCount;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
     }
 
     public boolean isHasComplain() {
