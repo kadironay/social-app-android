@@ -98,6 +98,8 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     private ProgressBar progressBar;
     private ImageView postImageView;
     private TextView titleTextView;
+    private TextView priceTextView;
+    private TextView cityInfoTextView;
     private TextView descriptionEditText;
     private ProgressBar commentsProgressBar;
     private RecyclerView commentsRecyclerView;
@@ -136,6 +138,8 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
         incrementWatchersCount();
 
         titleTextView = findViewById(R.id.titleTextView);
+        priceTextView = findViewById(R.id.priceTextView);
+        cityInfoTextView = findViewById(R.id.cityInfoTextView);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         postImageView = findViewById(R.id.postImageView);
         progressBar = findViewById(R.id.progressBar);
@@ -361,6 +365,16 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     @Override
     public void setTitle(String title) {
         titleTextView.setText(title);
+    }
+
+    @Override
+    public void setPrice(String price) {
+        priceTextView.setText(price);
+    }
+
+    @Override
+    public void setCityInfo(String city) {
+        cityInfoTextView.setText(city);
     }
 
     @Override

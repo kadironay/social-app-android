@@ -54,6 +54,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     protected Context context;
     private ImageView postImageView;
     private TextView titleTextView;
+    private TextView priceTextView;
+    private TextView cityInfoTextView;
     private TextView detailsTextView;
     private TextView likeCounterTextView;
     private ImageView likesImageView;
@@ -85,6 +87,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         watcherCounterTextView = view.findViewById(R.id.watcherCounterTextView);
         dateTextView = view.findViewById(R.id.dateTextView);
         titleTextView = view.findViewById(R.id.titleTextView);
+        priceTextView = view.findViewById(R.id.priceTextView);
+        cityInfoTextView = view.findViewById(R.id.cityInfoTextView);
         detailsTextView = view.findViewById(R.id.detailsTextView);
         authorImageView = view.findViewById(R.id.authorImageView);
         likeViewGroup = view.findViewById(R.id.likesContainer);
@@ -122,6 +126,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
 
         String title = removeNewLinesDividers(post.getTitle());
         titleTextView.setText(title);
+        String price = removeNewLinesDividers(post.getPrice());
+        priceTextView.setText(price);
         String description = removeNewLinesDividers(post.getDescription());
         detailsTextView.setText(description);
         likeCounterTextView.setText(String.valueOf(post.getLikesCount()));
@@ -134,7 +140,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         postManager.loadImageMediumSize(GlideApp.with(baseActivity), post.getImageTitle(), postImageView);
 
         if (post.getAuthorId() != null) {
-            profileManager.getProfileSingleValue(post.getAuthorId(), createProfileChangeListener(authorImageView));
+            profileManager.getProfileSingleValue(post.getAuthorId(), createProfileChangeListener(authorImageView, cityInfoTextView));
         }
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -149,13 +155,17 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         return text.substring(0, decoratedTextLength).replaceAll("\n", " ").trim();
     }
 
-    private OnObjectChangedListener<Profile> createProfileChangeListener(final ImageView authorImageView) {
+    private OnObjectChangedListener<Profile> createProfileChangeListener(final ImageView authorImageView, final TextView cityInfoTextView) {
         return new OnObjectChangedListenerSimple<Profile>() {
             @Override
             public void onObjectChanged(Profile obj) {
-                if (obj != null && obj.getPhotoUrl() != null) {
-                    if (!baseActivity.isFinishing() && !baseActivity.isDestroyed()) {
-                        ImageUtil.loadImage(GlideApp.with(baseActivity), obj.getPhotoUrl(), authorImageView);
+                if (obj != null ) {
+                    cityInfoTextView.setText(obj.getCity());
+
+                    if (obj.getPhotoUrl() != null) {
+                        if (!baseActivity.isFinishing() && !baseActivity.isDestroyed()) {
+                            ImageUtil.loadImage(GlideApp.with(baseActivity), obj.getPhotoUrl(), authorImageView);
+                        }
                     }
                 }
             }

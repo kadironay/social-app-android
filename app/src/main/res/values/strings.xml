@@ -47,6 +47,7 @@
     <string name="message_saving">Saving …</string>
     <string name="warning_empty_image">Image is required</string>
     <string name="warning_empty_title">Title is required</string>
+    <string name="warning_empty_price">Price is required</string>
     <string name="warning_empty_description">Description is required</string>
     <string name="error_post_title_length">Max length of the title should be less than 255 symbols</string>
     <string name="error_fail_remove_post">Fail to remove post</string>

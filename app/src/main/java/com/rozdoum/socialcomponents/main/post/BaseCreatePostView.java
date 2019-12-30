@@ -25,13 +25,17 @@ import com.rozdoum.socialcomponents.main.pickImageBase.PickImageView;
  */
 
 public interface BaseCreatePostView extends PickImageView {
-    void setDescriptionError(String error);
-
     void setTitleError(String error);
+
+    void setPriceError(String error);
+
+    void setDescriptionError(String error);
 
     String getTitleText();
 
     String getDescriptionText();
+
+    String getPriceText();
 
     void requestImageViewFocus();
 

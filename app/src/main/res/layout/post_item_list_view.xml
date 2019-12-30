@@ -34,14 +34,15 @@
                 android:id="@+id/authorImageView"
                 android:layout_width="@dimen/post_list_item_author_image_side"
                 android:layout_height="@dimen/post_list_item_author_image_side"
-                android:layout_alignParentEnd="true"
                 android:layout_alignTop="@+id/postImageView"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="159dp"
+                android:layout_marginEnd="8dp"
                 android:layout_marginRight="@dimen/intrinsic_padding"
-                android:layout_marginTop="@dimen/post_list_item_author_image_margin"
                 app:border="false"
                 app:shadow="true"
-                app:shadow_radius="@dimen/circle_image_shadow_radius"
-                app:shadow_color="@color/circle_image_shadow" />
+                app:shadow_color="@color/circle_image_shadow"
+                app:shadow_radius="@dimen/circle_image_shadow_radius" />
 
             <TextView
                 android:id="@+id/titleTextView"
@@ -57,13 +58,65 @@
                 android:maxLines="1"
                 android:textAppearance="@style/TextAppearance.Title" />
 
+            <LinearLayout
+                android:id="@+id/priceAndLocationContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/intrinsic_padding"
+                android:paddingRight="@dimen/intrinsic_padding"
+                android:layout_marginBottom="@dimen/intrinsic_padding"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/authorImageView"
+                android:layout_alignParentEnd="true"
+                android:orientation="horizontal"
+                android:layout_below="@+id/titleTextView">
+
+                <TextView
+                    android:id="@+id/priceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Second.Dark"
+                    android:text="12,00 €"/>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/intrinsic_padding"
+                    android:layout_marginEnd="@dimen/intrinsic_padding"
+                    android:background="@android:color/darker_gray"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/locationImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        app:srcCompat="@drawable/ic_location_on" />
+
+                    <TextView
+                        android:id="@+id/cityInfoTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:ellipsize="end"
+                        android:text="Eindhoven"
+                        android:textAppearance="@style/TextAppearance.Second.Light" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/detailsTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/intrinsic_padding"
                 android:paddingRight="@dimen/intrinsic_padding"
-                android:layout_below="@+id/titleTextView"
+                android:layout_below="@+id/priceAndLocationContainer"
                 android:layout_alignParentStart="true"
                 android:layout_toStartOf="@+id/authorImageView"
                 android:ellipsize="end"

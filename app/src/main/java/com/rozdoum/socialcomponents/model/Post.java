@@ -43,7 +43,7 @@ public class Post implements Serializable, LazyLoading {
     private boolean hasComplain;
     private ItemType itemType;
 
-    private long price;
+    private String price;
 
     public Post() {
         this.createdDate = new Date().getTime();
@@ -127,12 +127,17 @@ public class Post implements Serializable, LazyLoading {
         this.watchersCount = watchersCount;
     }
 
-    public long getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
-        this.price = price;
+    public void setPrice(String price) {
+        // TODO: null check will be removed
+        if (price != null) {
+            this.price = price;
+        } else {
+            this.price = "12,00 €";
+        }
     }
 
     public boolean isHasComplain() {
@@ -156,6 +161,7 @@ public class Post implements Serializable, LazyLoading {
         result.put("likesCount", likesCount);
         result.put("watchersCount", watchersCount);
         result.put("hasComplain", hasComplain);
+        result.put("price", price);
         result.put("createdDateText", FormatterUtil.getFirebaseDateFormat().format(new Date(createdDate)));
 
         return result;

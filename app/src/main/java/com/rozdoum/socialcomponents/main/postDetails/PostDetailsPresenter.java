@@ -108,6 +108,7 @@ class PostDetailsPresenter extends BasePresenter<PostDetailsView> {
     private void fillInUI(@NonNull Post post) {
         ifViewAttached(view -> {
             view.setTitle(post.getTitle());
+            view.setPrice(post.getPrice());
             view.setDescription(post.getDescription());
             view.loadPostDetailImage(post.getImageTitle());
 
@@ -128,6 +129,7 @@ class PostDetailsPresenter extends BasePresenter<PostDetailsView> {
                         String userName = MessageFormat.format("{0} {1}",
                                 profile.getFirstName(), profile.getLastName());
                         view.setAuthorName(userName);
+                        view.setCityInfo(profile.getCity());
                     });
                 }
             });

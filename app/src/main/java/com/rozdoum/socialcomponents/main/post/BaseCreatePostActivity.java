@@ -183,7 +183,7 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
                         return "";
                     }
                 },
-                new InputFilter.LengthFilter(15)
+                new InputFilter.LengthFilter(11)
         });
 
         titleEditText.setOnTouchListener((v, event) -> {
@@ -236,6 +236,17 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
     @Override
     public void requestImageViewFocus() {
         imageView.requestFocus();
+    }
+
+    @Override
+    public void setPriceError(String error) {
+        priceEditText.setError(error);
+        priceEditText.requestFocus();
+    }
+
+    @Override
+    public String getPriceText() {
+        return priceEditText.getText().toString();
     }
 
     @Override
