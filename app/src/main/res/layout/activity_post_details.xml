@@ -80,6 +80,23 @@
                     android:textAppearance="@style/TextAppearance.Second.Dark"
                     android:text="12,00 €"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/intrinsic_padding"
+                    android:layout_marginEnd="@dimen/intrinsic_padding"
+                    android:textColor="@color/button_pressed_text_color"
+                    android:text="per"/>
+
+                <TextView
+                    android:id="@+id/portionTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textAppearance="@style/TextAppearance.Second.Dark"
+                    android:text="Box"/>
+
                 <View
                     android:layout_width="1dp"
                     android:layout_height="match_parent"

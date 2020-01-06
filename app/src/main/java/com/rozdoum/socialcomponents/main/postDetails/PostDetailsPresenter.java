@@ -109,6 +109,7 @@ class PostDetailsPresenter extends BasePresenter<PostDetailsView> {
         ifViewAttached(view -> {
             view.setTitle(post.getTitle());
             view.setPrice(post.getPrice());
+            view.setPortion(post.getPortion());
             view.setDescription(post.getDescription());
             view.loadPostDetailImage(post.getImageTitle());
 

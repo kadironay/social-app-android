@@ -44,6 +44,7 @@ public class Post implements Serializable, LazyLoading {
     private ItemType itemType;
 
     private String price;
+    private String portion;
 
     public Post() {
         this.createdDate = new Date().getTime();
@@ -127,6 +128,18 @@ public class Post implements Serializable, LazyLoading {
         this.watchersCount = watchersCount;
     }
 
+    public String getPortion(){
+        return portion;
+    }
+
+    public  void setPortion(String portion){
+        if (portion != null) {
+            this.portion = portion;
+        } else {
+            this.portion = "Box";
+        }
+    }
+
     public String getPrice() {
         return price;
     }
@@ -162,6 +175,7 @@ public class Post implements Serializable, LazyLoading {
         result.put("watchersCount", watchersCount);
         result.put("hasComplain", hasComplain);
         result.put("price", price);
+        result.put("portion", portion);
         result.put("createdDateText", FormatterUtil.getFirebaseDateFormat().format(new Date(createdDate)));
 
         return result;

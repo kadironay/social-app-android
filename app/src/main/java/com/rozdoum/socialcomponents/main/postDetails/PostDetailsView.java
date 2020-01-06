@@ -40,6 +40,8 @@ public interface PostDetailsView extends BaseView {
 
     void setPrice(String price);
 
+    void setPortion(String portion);
+
     void setCityInfo(String city);
 
     void setDescription(String description);

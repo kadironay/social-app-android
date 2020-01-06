@@ -99,6 +99,7 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     private ImageView postImageView;
     private TextView titleTextView;
     private TextView priceTextView;
+    private TextView portionTextView;
     private TextView cityInfoTextView;
     private TextView descriptionEditText;
     private ProgressBar commentsProgressBar;
@@ -139,6 +140,7 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
 
         titleTextView = findViewById(R.id.titleTextView);
         priceTextView = findViewById(R.id.priceTextView);
+        portionTextView = findViewById(R.id.portionTextView);
         cityInfoTextView = findViewById(R.id.cityInfoTextView);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         postImageView = findViewById(R.id.postImageView);
@@ -370,6 +372,10 @@ public class PostDetailsActivity extends BaseActivity<PostDetailsView, PostDetai
     @Override
     public void setPrice(String price) {
         priceTextView.setText(price);
+    }
+    @Override
+    public void setPortion(String portion) {
+        portionTextView.setText(portion);
     }
 
     @Override

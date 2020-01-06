@@ -29,9 +29,13 @@ public interface BaseCreatePostView extends PickImageView {
 
     void setPriceError(String error);
 
+    void setPortionError(String error);
+
     void setDescriptionError(String error);
 
     String getTitleText();
+
+    String getPortionText();
 
     String getDescriptionText();
 

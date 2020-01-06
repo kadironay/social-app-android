@@ -269,6 +269,7 @@ public class PostInteractor {
                         post.setId(key);
                         post.setTitle((String) mapObj.get("title"));
                         post.setPrice((String) mapObj.get("price"));
+                        post.setPortion((String) mapObj.get("portion"));
                         post.setDescription((String) mapObj.get("description"));
                         post.setImageTitle((String) mapObj.get("imageTitle"));
                         post.setAuthorId((String) mapObj.get("authorId"));

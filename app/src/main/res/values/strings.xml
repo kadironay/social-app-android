@@ -35,6 +35,7 @@
     <string name="hint_price">Food Price</string>
     <string name="hint_title">Title</string>
     <string name="hint_description">Description</string>
+    <string name="hint_portion">Portion (Box, Piece, Kg, etc.)</string>
 
     <string name="message_post_was_created">Post was created</string>
     <string name="error_fail_create_post">Fail to create post</string>
@@ -48,6 +49,7 @@
     <string name="warning_empty_image">Image is required</string>
     <string name="warning_empty_title">Title is required</string>
     <string name="warning_empty_price">Price is required</string>
+    <string name="warning_empty_portion">Portion is required</string>
     <string name="warning_empty_description">Description is required</string>
     <string name="error_post_title_length">Max length of the title should be less than 255 symbols</string>
     <string name="error_fail_remove_post">Fail to remove post</string>

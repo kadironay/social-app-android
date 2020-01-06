@@ -52,6 +52,7 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
     protected EditText titleEditText;
     protected EditText descriptionEditText;
     protected EditText priceEditText;
+    protected EditText portionEditText;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -65,6 +66,7 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
         titleEditText = findViewById(R.id.titleEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         priceEditText = findViewById(R.id.priceEditText);
+        portionEditText = findViewById(R.id.portionEditText);
         progressBar = findViewById(R.id.progressBar);
 
         imageView = findViewById(R.id.imageView);
@@ -194,6 +196,14 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
 
             return false;
         });
+
+        portionEditText.setOnTouchListener((v, event) ->{
+            if (portionEditText.hasFocus() && portionEditText.getError() != null){
+                portionEditText.setError(null);
+                return true;
+            }
+            return false;
+        });
     }
 
     @Override
@@ -224,10 +234,18 @@ public abstract class BaseCreatePostActivity<V extends BaseCreatePostView, P ext
     }
 
     @Override
+    public void setPortionError(String error) {
+        portionEditText.setError(error);
+        portionEditText.requestFocus();
+    }
+    @Override
     public String getTitleText() {
         return titleEditText.getText().toString();
     }
-
+    @Override
+    public String getPortionText() {
+        return portionEditText.getText().toString();
+    }
     @Override
     public String getDescriptionText() {
         return descriptionEditText.getText().toString();
