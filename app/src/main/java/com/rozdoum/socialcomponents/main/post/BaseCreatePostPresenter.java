@@ -46,7 +46,7 @@ public abstract class BaseCreatePostPresenter<V extends BaseCreatePostView> exte
     @StringRes
     protected abstract int getSaveFailMessage();
 
-    protected abstract void savePost(final String title, final String price, final String description);
+    protected abstract void savePost(final String title, final String price, final String portion, final String description);
 
     protected abstract boolean isImageRequired();
 
@@ -59,6 +59,7 @@ public abstract class BaseCreatePostPresenter<V extends BaseCreatePostView> exte
             String title = view.getTitleText().trim();
             String description = view.getDescriptionText().trim();
             String price = view.getPriceText().trim();
+            String portion = view.getPortionText().trim();
 
             boolean cancel = false;
 
@@ -80,6 +81,11 @@ public abstract class BaseCreatePostPresenter<V extends BaseCreatePostView> exte
                 cancel = true;
             }
 
+            if (TextUtils.isEmpty(portion)) {
+                view.setPortionError(context.getString(R.string.warning_empty_portion));
+                cancel = true;
+            }
+
             if (isImageRequired() && view.getImageUri() == null) {
                 view.showWarningDialog(R.string.warning_empty_image);
                 view.requestImageViewFocus();
@@ -89,7 +95,7 @@ public abstract class BaseCreatePostPresenter<V extends BaseCreatePostView> exte
             if (!cancel) {
                 creatingPost = true;
                 view.hideKeyboard();
-                savePost(title, price, description);
+                savePost(title, price, portion, description);
             }
         });
     }

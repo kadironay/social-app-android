@@ -55,6 +55,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     private ImageView postImageView;
     private TextView titleTextView;
     private TextView priceTextView;
+    private TextView portionTextView;
     private TextView cityInfoTextView;
     private TextView detailsTextView;
     private TextView likeCounterTextView;
@@ -88,6 +89,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         dateTextView = view.findViewById(R.id.dateTextView);
         titleTextView = view.findViewById(R.id.titleTextView);
         priceTextView = view.findViewById(R.id.priceTextView);
+        portionTextView = view.findViewById(R.id.portionTextView);
         cityInfoTextView = view.findViewById(R.id.cityInfoTextView);
         detailsTextView = view.findViewById(R.id.detailsTextView);
         authorImageView = view.findViewById(R.id.authorImageView);
@@ -128,6 +130,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
         titleTextView.setText(title);
         String price = removeNewLinesDividers(post.getPrice());
         priceTextView.setText(price);
+        String portion = removeNewLinesDividers(post.getPortion());
+        portionTextView.setText(portion);
         String description = removeNewLinesDividers(post.getDescription());
         detailsTextView.setText(description);
         likeCounterTextView.setText(String.valueOf(post.getLikesCount()));
